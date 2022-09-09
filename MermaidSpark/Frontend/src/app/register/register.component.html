@@ -1,0 +1,82 @@
+<!-- Material form register -->
+<div class="container">
+    <div class="register frameDesign">
+      <form [formGroup]="signupForm" (ngSubmit)="register(signupForm.value)" >
+        <p class="h4 text-center mb-4" style="color:white">Sign up</p>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group ">
+              <!-- <label for="firstName" class="bluesky">First Name :</label> -->
+              <div class="inner-addon left-addon">
+                <i class="glyphicon glyphicon-user"></i>
+                <input id="firstName" class="form-control"  formControlName="firstName" 
+                placeholder="first name..">
+              </div>
+              <div *ngIf="isInvalid('firstName')" class="error" @error>
+                  <i class="glyphicon glyphicon-warning-sign"></i>
+                  {{showError("firstName")}}
+                </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group ">
+              <!-- <label for="lastName" class="bluesky">Last Name :</label> -->
+              <input id="lastName" class="form-control" formControlName="lastName" 
+              placeholder="last name..">
+                <div *ngIf="isInvalid('lastName')" class="error" @error>
+                    <i class="glyphicon glyphicon-warning-sign"></i>
+                  {{showError("lastName")}}
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <!-- <label for="email" class="bluesky">Email :</label> -->
+          <div class="inner-addon left-addon">
+            <i class="glyphicon glyphicon-envelope"></i>
+            <input id="email" class="form-control" formControlName="email" 
+            placeholder="email.." >
+          </div>
+          <div *ngIf="isInvalid('email')" class="error" @error>
+            <i class="glyphicon glyphicon-warning-sign"></i>
+            {{showError("email")}}
+          </div>
+        </div>
+        <div class="form-group">
+          <!-- <label for="password" class="bluesky">Password :</label> -->
+          <div class="inner-addon left-addon">
+            <i class="glyphicon glyphicon-lock"></i>
+            <input id="password" type="password" class="form-control" formControlName="password" 
+            placeholder="password..">
+          </div>
+          <div *ngIf="isInvalid('password')" class="error" @error>
+              <i class="glyphicon glyphicon-warning-sign"></i>
+              {{showError("password")}}
+            </div>
+        </div>
+        <div class="form-group">
+          <!-- <label for="cPassword" class="bluesky">Confirm Password :</label> -->
+          <div class="inner-addon left-addon">
+              <i class="glyphicon glyphicon-lock"></i>
+            <input id="cPassword" type="password" class="form-control" formControlName="cPassword" 
+            placeholder="confirm password..">
+          </div>
+          <div *ngIf="isInvalid('cPassword')" class="error" @error>
+              <i class="glyphicon glyphicon-warning-sign"></i>
+              {{showError("cPassword")}}
+            </div>
+        </div>
+        <div class="form-group text-center">
+          <button class="btn btn-success mat-elevation-z8" type="submit" [disabled]="!signupForm.valid">sign up</button>
+        </div>
+      </form>
+      <div class="terms">By clicking "sign up", you confirm that you have read and understood the MetricGate
+        <a [routerLink]='["/legal/privacy-policy"]'>privacy and cookie policy</a> and agreed to its
+        <a [routerLink]='["/legal/terms-and-conditions"]'> terms and conditions</a>.
+      </div>
+    </div>
+    <div class="bottomNote" >
+      <span>Already have an account? </span>
+      <span class="signin" [routerLink]='["/account/login"]'>Sign in </span>
+    </div>    
+</div>

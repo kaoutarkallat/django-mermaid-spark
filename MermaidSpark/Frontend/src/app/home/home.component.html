@@ -1,0 +1,358 @@
+<style>
+  .fluid-card {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column
+  }
+
+  .fluid-card.a-cardui .a-cardui-body {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    height: 275px;
+    margin-bottom: 44px;
+    padding: 0 20px
+  }
+
+  .fluid-quad-image-label .image-label {
+    height: 36px
+  }
+
+  .fluid-quad-image-label .image-redirect {
+    height: 100%
+  }
+
+  .fluid-quad-image-label .grid-row-1 {
+    margin-bottom: 6px
+  }
+
+  .fluid-quad-image-label .grid-row-1,
+  .fluid-quad-image-label .grid-row-2 {
+    height: 50%;
+    overflow: hidden
+  }
+  
+  .fluid-quad-image-label .quadrant-container {
+    display: inline-block;
+    height: 100%;
+    margin: 0;
+    padding: 0 0 36px;
+    position: relative;
+    width: 47.5%
+  }
+
+  .fluid-quad-image-label .quadrant-container-1 {
+    float: right
+  }
+
+  html[dir=rtl] .fluid-quad-image-label .quadrant-container-1 {
+    float: left
+  }
+
+  .fluid-quad-image-label .quadrant-overlay {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%
+  }
+
+  .fluid-image-container {
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    width: 100%
+  }
+
+  .fluid-image-container img {
+    bottom: -9999px;
+    left: -9999px;
+    margin: auto;
+    position: absolute;
+    right: -9999px;
+    top: -9999px
+  }
+  
+  .fluid-image-container .landscape-image {
+    height: 100%;
+    max-height: 100%;
+    max-width: none
+  }
+  
+  .fluid-image-container .portrait-image {
+    max-height: none;
+    max-width: 100%;
+    width: 100%
+  }
+</style>
+
+
+
+
+
+
+
+<ngx-slick-carousel class="main-slider slider" [config]="slideConfig" >
+  <div ngxSlickItem *ngFor="let product of carousel" class="slider-item " [style]="product.img">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-12 offset-lg-6 offset-md-6">
+          <div class="slider-caption">
+            <span class="lead">Sportwear Collection </span>
+            <h1 class="mt-2 mb-5">
+              <span class="text-color">10% off </span>YOUR FIRST ORDER
+            </h1>
+            <a href="#" class="btn btn-main">Shop Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ngx-slick-carousel>
+
+<section   class="category section pt-3 pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-sm-12 col-md-6">
+        <div class="cat-item mb-4 mb-lg-0">
+          <img
+            src="https://ae01.alicdn.com/kf/Hdd2f30042a504e0094412f3d26437e14V/Cloud-Hide-Sexy-Back-Sports-Bra-Women-Yoga-Crop-Top-Push-Up-Fitness-Underwear-Bras-Athletic.jpg_220x220xz.jpg_.webp"
+            alt="" class="img-fluid">
+          <div class="item-info">
+            <p class="mb-0">Fitness Top</p>
+            <h4 class="mb-4">up to <strong>30% </strong>off</h4>
+            <a href="#" class="read-more" (click)="stop.goTo(['bras'])">Shop now</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-12 col-md-6">
+        <div class="cat-item mb-4 mb-lg-0">
+          <img
+          src="https://ae01.alicdn.com/kf/Ha35e92a1951b43cb9a71f43e3f1dbcaeb/Platform-Ladies-Sneakers-Breathable-Women-Casual-Running-Shoes-Woman-Fashion-Height-Increasing-Sport-Plus-Size-35.jpg_220x220xz.jpg_.webp"
+            alt="" class="img-fluid">
+            <div class="item-info">
+            <p class="mb-0">Female Sneakers Sport</p>
+            <h4 class="mb-4">up to <strong>25% </strong>off</h4>
+            <a href="#" class="read-more" (click)="stop.goTo(['sneakers'])">Shop now</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-12 col-md-6">
+        <div class="cat-item">
+          <img
+          src="https://ae01.alicdn.com/kf/S2dcc30a062fd409895a9e6bfc0edf208Z/Mid-Thigh-High-Waist-Workout-Shorts-Vital-Seamless-Fitness-Yoga-Scrunch-Butt-Running-Shorts-Sport-Women.jpg_220x220xz.jpg_.webp"
+          alt="" class="img-fluid">
+          <div class="item-info">
+            <p class="mb-0">Trendy Shorts</p>
+            <h4 class="mb-4">up to <strong>30% </strong>off</h4>
+            <a href="#" class="read-more" (click)="stop.goTo(['shorts'])">Shop now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================ category  ============================= -->
+<!-- ================ category  ============================= -->
+<!-- ================ category  ============================= -->
+<section id="myshop" class="section products-main" >
+  <div style="display: flex; justify-content:center; flex-direction:row; flex-wrap: wrap;">
+    
+    <div id="udVGTDjen7VpF-HX6mfJ7Q" *ngFor="let box of boxes"
+    class="a-cardui fluid-quad-card fluid-card fluid-quad-image-label fluid-quad-image-label"
+    data-a-card-type="basic">
+    <div class="a-cardui-header">
+      <h2 class="a-color-base headline truncate-2line">Sportwear Categories
+        
+      </h2>
+    </div>
+    <div class="a-cardui-body">
+      <div class="a-section a-spacing-small grid-row-1">
+        <div class="a-section a-spacing-none quadrant-container quadrant-container-0" (click)="stop.goTo(box[0].url)">
+            <a aria-label="Headsets" class="a-link-normal image-redirect aok-block image-window"  [routerLink]="'/'+[box[0].url[0]+'/1']"  fragment="start0">
+              <div class="a-section a-spacing-none fluid-image-container">
+                <img alt="Headsets" [src]="box[0].img" class="landscape-image"
+                  data-a-hires="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2021/June/Fuji_Quad_Headset_2x._SY232_CB667159060_.jpg">
+              </div>
+              <!-- <div class="a-section a-spacing-none image-label aok-inline-block aok-align-center category-item"
+                >
+                <span class="a-size-small a-color-base truncate-2line">{{box[0].category}} </span>
+              </div> -->
+            </a>
+          </div>
+          <div class="a-section a-spacing-none quadrant-container quadrant-container-1" (click)="stop.goTo(box[1].url)">
+            <a aria-label="Keyboards" class="a-link-normal image-redirect aok-block image-window"  [routerLink]="'/'+[box[1].url[0]+'/1']" fragment="start0">
+              <div class="a-section a-spacing-none fluid-image-container">
+                <img alt="Keyboards" [src]="box[1].img" class="landscape-image"
+                  data-a-hires="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2021/June/Fuji_Quad_Keyboard_2x._SY232_CB667159063_.jpg">
+              </div>
+              <!-- <div class="a-section a-spacing-none image-label aok-inline-block aok-align-center category-item">
+                <span class="a-size-small a-color-base truncate-2line">{{box[1].category}} </span>
+              </div> -->
+            </a>
+          </div>
+        </div>
+        <div class="a-section grid-row-2">
+          <div class="a-section a-spacing-none quadrant-container quadrant-container-0" (click)="stop.goTo(box[2].url)">
+            <a aria-label="Computer mice" class="a-link-normal image-redirect aok-block image-window"  [routerLink]="'/'+[box[2].url[0]+'/1']" fragment="start0">
+              <div class="a-section a-spacing-none fluid-image-container">
+                <img alt="Computer mice" [src]="box[2].img" class="landscape-image"
+                  data-a-hires="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2021/June/Fuji_Quad_Mouse_2x._SY232_CB667159063_.jpg">
+              </div>
+              <div class="a-section a-spacing-none image-label aok-inline-block aok-align-center category-item">
+                <span class="a-size-small a-color-base truncate-2line">{{box[2].category}}</span>
+              </div>
+            </a>
+          </div>
+          <div class="a-section a-spacing-none quadrant-container quadrant-container-1" (click)="stop.goTo(box[3].url)">
+            <a aria-label="Chairs" class="a-link-normal image-redirect aok-block image-window" [routerLink]="'/'+[box[3].url[0]+'/1']" fragment="start0">
+              <div class="a-section a-spacing-none fluid-image-container">
+                <img alt="Chairs" [src]="box[3].img" class="landscape-image"
+                  data-a-hires="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2021/June/Fuji_Quad_Chair_2x._SY232_CB667159060_.jpg">
+              </div>
+              <div class="a-section a-spacing-none image-label aok-inline-block aok-align-center category-item">
+                <span class="a-size-small a-color-base truncate-2line">{{box[3].category}}</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="a-cardui-footer"  (click)='stop.goTo(box[0].see_more)'>
+        <a class="a-link-normal see-more truncate-1line" routerLink="/more-products/1"
+        (click)='stop.goTo(box[0].see_more)'
+        >See more</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- /portfolio -->
+<!-- <section class="ads section">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 offset-lg-6">
+          <div class="ads-content">
+            <span class="h5 deal">Deal of the day 50% Off</span>
+            <h2 class="mt-3 text-white">Trendy Suit</h2>
+            <p class="text-md mt-3 text-white">Hurry up! Limited time offer.Grab ot now!</p>
+                <div id="simple-timer" class="syotimer mb-5">
+
+                </div>
+            <a href="#" class="btn btn-main">
+              <i class="ti-bag mr-2">
+
+            </i>Shop Now </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+<section id="footer_products" class="section products-list">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-sm-12 col-md-12">
+        <img
+          src="https://ae01.alicdn.com/kf/S95106c03809c4ea79493fec2a801995dk/Ensemble-de-v-tements-de-sport-pour-femmes-soutien-gorge-et-Leggings-v-tements-d-entra.jpg_Q90.jpg_.webp"
+          alt="Product big thumb" class="img-fluid w-100">
+      </div>
+      <div class="col-lg-4 col-sm-6 col-md-6">
+        <div class="widget-featured-entries mt-5 mt-lg-0">
+          <h4 class="mb-4 pb-3">Best selllers</h4>
+          <div class="media mb-3" [routerLink]="['detail']" *ngFor="let product of products_footer_left"
+            (click)="stop.product_detail=product">
+            <a class="featured-entry-thumb" [routerLink]="['detail']" (click)="stop.product_detail=product ">
+
+              <img [src]="product.img_front" alt="Product thumb" width="64" class="img-fluid mr-3">
+            </a>
+            <div class="media-body">
+              <h6 class="featured-entry-title mb-0">
+                <a [routerLink]="['detail']" fragment="start0">{{product.description}} </a>
+              </h6>
+              <p class="featured-entry-meta">{{product.price}}</p>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 col-md-6">
+        <div class="widget-featured-entries mt-5 mt-lg-0">
+          <h4 class="mb-4 pb-3">Best selllers</h4>
+          <div class="media mb-3" [routerLink]="['detail']" *ngFor="let product of products_footer_right"
+            (click)="stop.product_detail=product">
+            <a class="featured-entry-thumb" [routerLink]="['detail']" (click)="stop.product_detail=product">
+              <img [src]="product.img_front" alt="Product thumb" width="64" class="img-fluid mr-3">
+            </a>
+            <div class="media-body">
+              <h6 class="featured-entry-title mb-0">
+                <a [routerLink]="['detail']">{{product.description}}</a>
+              </h6>
+              <p class="featured-entry-meta">{{product.price}}</p>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="features border-top">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-sm-6 col-md-6">
+        <div class="feature-block">
+          <i class="tf-ion-android-bicycle">
+
+          </i>
+          <div class="content">
+            <h5>Free Shipping</h5>
+            <p>On all order over $39.00</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6 col-md-6">
+        <div class="feature-block">
+          <i class="tf-wallet">
+
+          </i>
+          <div class="content">
+            <h5>30 Days Return</h5>
+            <p>Money back Guarantee</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6 col-md-6">
+        <div class="feature-block">
+          <i class="tf-key">
+
+          </i>
+          <div class="content">
+            <h5>Secure Checkout</h5>
+            <p>100% Protected by paypal</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6 col-md-6">
+        <div class="feature-block">
+          <i class="tf-clock">
+
+          </i>
+          <div class="content">
+            <h5>24/7 Support</h5>
+            <p>All time customer support </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

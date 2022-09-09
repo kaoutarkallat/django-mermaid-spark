@@ -1,0 +1,188 @@
+p.h4 {
+    margin: 0px 0px 15px;
+    padding: 10px 0px;
+    border-top: solid 1px white;
+    border-bottom: solid 1px white;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0px;
+}
+
+.bottomNote {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    /* margin:15px 0px; */
+    background: linear-gradient(white, #bbb);
+    border: solid 1px rgb(0, 162, 255);
+    font-size: 130%;
+    width: 400px;
+}
+
+.signup {
+    padding-left: 10px;
+    color: rgb(12, 93, 160);
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+}
+
+.signup:hover {
+    color: rgb(12, 121, 209);
+    text-decoration: underline;
+}
+
+.register {
+    padding: 14px 20px;
+    /* background-color: rgba(105, 105, 105, 0.425); */
+    color: rgb(112, 212, 212);
+    width: 430px;
+}
+
+.frameDesign {
+    background: none;
+}
+
+.bluesky {
+    color: rgb(74, 161, 190);
+    font-weight: bold;
+}
+
+.inner-addon {
+    position: relative;
+}
+
+/* style icon */
+.inner-addon .glyphicon {
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
+}
+
+.inner-addon .fa {
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
+}
+
+/* align icon */
+.left-addon .glyphicon {
+    left: 0px;
+}
+
+.right-addon .glyphicon {
+    right: 0px;
+}
+
+.left-addon .fa {
+    left: 0px;
+}
+
+.right-addon .fa {
+    right: 0px;
+}
+
+/* add padding  */
+.left-addon input {
+    padding-left: 40px;
+}
+
+.right-addon input {
+    padding-right: 30px;
+}
+
+.terms {
+    color: rgb(255, 255, 255);
+    border: solid 1px #ccc;
+    padding: 5px;
+
+}
+
+a {
+    color: rgb(0, 238, 255);
+}
+
+a:hover {
+    color: rgb(0, 209, 224);
+}
+
+.error {
+    color: rgb(128, 47, 47);
+    background-color: rgb(233, 147, 147);
+    /* border:solid 1px rgb(145, 20, 20); */
+    text-align: center;
+    padding: 3px;
+}
+
+.Info {
+    width: 450px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #EEE;
+    border-style: inset;
+    color: #EEE;
+    font-size: 130%;
+    border-radius: 5px;
+    text-shadow: -1px -1px #222;
+}
+
+.forgotpassword {
+    position: absolute;
+    border-radius: 5px;
+    background: linear-gradient(to bottom right, rgb(12, 38, 122), rgb(18, 137, 158));
+    width: 380px;
+    margin: 10px;
+    padding: 5px 10px 10px;
+    border: 1px solid #DDD;
+    border-style: inset;
+    color: #DDD;
+    font-size: 120%;
+    box-shadow: 2px 2px 5px black;
+    z-index: 1;
+}
+
+.fpHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* padding:10px;     */
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    width: 100%;
+    /* height: 35px;     */
+}
+
+.alert {
+    box-shadow: 2px 2px 5px black;
+    position: absolute;
+    border-radius: 5px;
+    background: linear-gradient(to bottom right, rgb(192, 78, 78), rgb(226, 105, 105));
+    /* width: 380px; */
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #DDD;
+    color: #DDD;
+    font-size: 120%;
+    z-index: 2;
+}
+
+.notice {
+    background: linear-gradient(to right bottom, rgb(210, 210, 210), rgb(235, 235, 235), rgb(210, 210, 210));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Times New Roman', Times, serif;
+    color: #222;
+}
+
+.notice img {
+    border: none;
+    box-shadow: none;
+}

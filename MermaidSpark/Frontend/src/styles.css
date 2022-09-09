@@ -1,0 +1,76 @@
+
+/* You can add global styles to this file, and also import other style files */
+
+.a-icon.a-star-small-5 {
+    background-position: -2px -2px;
+}
+.a-icon.a-star-small-4-5 {
+    background-position: -2px -42px;
+}
+.a-icon.a-star-small-4 {
+    background-position: -2px -22px;
+}
+
+
+.a-icon.a-star-medium-3 {
+    background-position: -293px -438px;
+}
+
+.a-icon.a-star-medium-2 {
+    background-position: -99px -390px;
+}
+
+.a-icon.a-star-medium-1 {
+    background-position: -390px -486px;
+}
+
+.a-icon.a-icon-star, .a-icon.a-icon-star-medium, .a-icon.a-icon-star-mini, .a-icon.a-icon-star-small {
+    background-image: url(https://m.media-amazon.com/images/S/sash/ouR9NRElwmzAIev.png);
+    -webkit-background-size: 512px 512px;
+    background-size: 512px 512px;
+    background-repeat: no-repeat;
+}
+.a-icon-star-medium {
+    height: 22px;
+    width: 95px;
+    margin-right: 1px;
+    top: -2px;
+}
+.a-icon-star, .a-icon-star-medium, .a-icon-star-mini, .a-icon-star-small {
+    position: relative;
+    vertical-align: text-top;
+}
+
+
+
+
+.a-icon.a-icon-star, .a-icon.a-icon-star-medium, .a-icon.a-icon-star-mini, .a-icon.a-icon-star-small {
+    background-image: url(https://m.media-amazon.com/images/S/sash/ouR9NRElwmzAIev.png);
+    -webkit-background-size: 512px 512px;
+    background-size: 512px 512px;
+    background-repeat: no-repeat;
+}
+.a-align-bottom, .aok-align-bottom {
+    vertical-align: bottom!important;
+}
+.a-icon-star, .a-icon-star-small {
+    height: 18px;
+    width: 80px;
+}
+.a-icon-star, .a-icon-star-medium, .a-icon-star-mini, .a-icon-star-small {
+    position: relative;
+    vertical-align: text-top;
+}
+.a-icon {
+    display: inline-block;
+    vertical-align: top;
+}
+.a-icon {
+    background-image: url(https://m.media-amazon.com/images/S/sash/McBZv0ZvnbehkIx.png);
+    -webkit-background-size: 400px 900px;
+    background-size: 400px 900px;
+    background-repeat: no-repeat;
+}
+em, i {
+    font-style: italic;
+}

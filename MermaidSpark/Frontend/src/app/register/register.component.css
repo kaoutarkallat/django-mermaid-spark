@@ -1,0 +1,94 @@
+p.h4{
+    margin:0px 0px 15px;
+    padding:10px 0px;
+    border-top:solid 1px white;
+    border-bottom:solid 1px white;
+  }
+  .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0px;
+  }
+  .bottomNote{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    /* margin:15px 0px; */
+    background: linear-gradient(white,#bbb);
+    border:solid 1px rgb(0, 162, 255);
+    font-size: 130%;
+    width: 400px;
+  }
+  .signin{
+    padding-left: 10px;
+    color:rgb(12, 93, 160);
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .signin:hover{
+    color:rgb(12, 121, 209);
+    text-decoration: underline;
+  }
+  .register{
+      width: 400px;
+      padding: 14px 20px;
+      background-color: rgba(105, 105, 105, 0.425);
+      /* color:rgb(13, 15, 15); */
+      color:rgb(112, 212, 212);
+  }
+  .frameDesign{
+    background: none
+  }
+  .bluesky{
+      color:rgb(190, 221, 231);
+    }
+    .inner-addon { 
+      position: relative; 
+    }
+    
+    /* style icon */
+    .inner-addon .glyphicon {
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
+    }
+    .inner-addon .fa {
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
+    }
+    
+    /* align icon */
+    .left-addon .glyphicon  { left:  0px;}
+    .right-addon .glyphicon { right: 0px;}
+    .left-addon .fa  { left:  0px;}
+    .right-addon .fa { right: 0px;}
+    
+    /* add padding  */
+    .left-addon input  { padding-left:  40px; }
+    .right-addon input { padding-right: 30px; }
+  
+    .terms{
+      color : rgb(255, 255, 255);
+      border: solid 1px #ccc;
+      padding:5px;
+      
+    }
+    a{
+      color:rgb(0, 238, 255);
+    }
+    a:hover{
+      color:rgb(0, 209, 224);
+    }
+  
+    .error{
+      color:rgb(250, 176, 176);
+      background: none;
+      /* background-color: rgb(233, 147, 147); */
+      /* border:solid 1px rgb(145, 20, 20); */
+      text-align: center;
+      padding:3px;
+    }

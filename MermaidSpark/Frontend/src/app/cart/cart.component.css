@@ -1,0 +1,13 @@
+a{
+    color: rgb(0, 17, 255);
+}
+th{
+    font-size: 19px;
+}
+td{
+    font-size: 18px;
+    color: rgb(63, 63, 63);
+}
+table{
+    font-family: Lato, Helvetica, Arial, sans-serif;
+}

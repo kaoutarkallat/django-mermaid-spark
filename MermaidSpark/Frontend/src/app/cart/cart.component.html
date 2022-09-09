@@ -1,0 +1,42 @@
+
+<div class="container">
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr *ngFor="let product of stop.cart">
+            <td>
+                <a routerLink="#" (click)="stop.remove_from_cart(product)"
+                    aria-label="Remove this item" data-product_id="436" data-product_sku="">×</a>
+            </td>
+
+            <td>
+                <a href="https://demo.quemalabs.com/shophistic-lite/product/34-length-sleeve-t-shirt/">
+                    <img width="50" height="50"
+                        [src]="product.img_front"
+                        alt=""
+                        >
+                    </a>
+            </td>
+
+            <td>{{product.description}} </td>
+            <td><span>{{product.price}} </span></td>
+            <td data-title="Quantity">
+                    <label for="quantity_63077173e1ced"> 1 </label>
+            </td>
+            <td data-title="Subtotal">
+                <span>{{product.price}}</span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>

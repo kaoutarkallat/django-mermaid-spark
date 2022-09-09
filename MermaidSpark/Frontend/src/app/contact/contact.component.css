@@ -1,0 +1,17 @@
+.bg-secondary{
+    background: linear-gradient(to bottom right,rgb(233, 146, 114),rgb(233, 116, 74)) !important;
+}
+
+.tab{
+    font-size: 20px;
+    color: rgb(250, 245, 243);
+}
+.tab-home{
+    color: rgb(255, 255, 255);
+    text-decoration: underline;
+}
+
+.email{
+    color: rgb(17, 17, 185);
+    font-weight: bold;
+}

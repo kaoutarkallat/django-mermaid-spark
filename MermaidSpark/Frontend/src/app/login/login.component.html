@@ -1,0 +1,59 @@
+
+  
+    <div class="alert" *ngIf="alertOn">
+      <div>
+        {{alertMsg}} !
+      </div>
+    </div>
+    blablaaa
+  <div class="container" >
+        <div class=" register frameDesign">
+          <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)" >
+            <p class="h4 text-center mb-4" style="color:white">Log in</p>
+            <div class="form-group">
+              <label for="email" class="bluesky">Email :</label>
+              <div class="inner-addon left-addon">
+                <i class="glyphicon glyphicon-envelope"></i>
+                <input id="email" class="form-control" formControlName="email" placeholder="Enter your email.." >
+              </div>
+              <!-- <div *ngIf="isInvalid('email')" class="error" @error>
+                <i class="glyphicon glyphicon-warning-sign"></i>
+                {{showError("email")}}
+              </div> -->
+            </div>
+            <div class="form-group">
+              <label for="password" class="bluesky">Password :</label>
+              <div class="inner-addon left-addon">
+                <i class="glyphicon glyphicon-lock"></i>
+                <input id="password" type="password" class="form-control" formControlName="password" placeholder="Enter your password..">
+              </div>
+              <!-- <div *ngIf="isInvalid('password')" class="error" @error>
+                  <i class="glyphicon glyphicon-warning-sign"></i>
+                  {{showError("password")}}
+                </div> -->
+            </div>
+            <div class="form-group text-center">
+              <button class="btn btn-success mat-elevation-z8" type="submit" [disabled]="!loginForm.valid">sign in</button>
+            </div>
+            <div style="text-align:right">
+              <span (click)="openForgotPassword()" style="color:rgb(101, 179, 243);cursor: pointer;text-decoration: underline">
+                forgot password?
+              </span>
+            </div>
+          </form>
+        </div>
+        <div class="bottomNote" >
+          <span>Don't have an account? </span>
+          <!-- <span class="signup" [routerLink]='["/account/signup"]' (click)="go2signup()">Sign up </span> -->
+          <span class="signup" routerLink="/register" >Sign up </span>
+        </div>
+       
+    </div>
+  
+  
+  
+  
+  
+    <br><br><br>
+  
+   
