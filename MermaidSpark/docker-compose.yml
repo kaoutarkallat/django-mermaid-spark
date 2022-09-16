@@ -13,10 +13,10 @@ services:
     ports:
       - "8002:8001"
     environment:
-      DATABASE_NAME: factory_datingdb
+      DATABASE_NAME: mermaidsparkdb
       DATABASE_USER: postgres
       DATABASE_PASS: code
-      DATABASE_HOST: mermaidsparkdb
+      DATABASE_HOST: localhost
       DATABASE_PORT: 5432
 
 
