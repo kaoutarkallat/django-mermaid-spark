@@ -16,7 +16,7 @@ services:
       DATABASE_NAME: mermaid_spark_db
       DATABASE_USER: postgres
       DATABASE_PASS: code
-      DATABASE_HOST: 3.215.46.92'
+      DATABASE_HOST: 3.215.46.92
       DATABASE_PORT: 5432
 
 
