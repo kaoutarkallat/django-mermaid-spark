@@ -11,7 +11,7 @@ services:
     volumes:
       - .:/code
     ports:
-      - "8002:8001"
+      - "2222:8001"
     environment:
       DATABASE_NAME: mermaid_spark_db
       DATABASE_USER: postgres
