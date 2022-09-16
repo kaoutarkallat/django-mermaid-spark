@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'mermaid_spark_db',
         'USER':'postgres',
         'PASSWORD':'code',
-        'HOST':'localhost',
+        'HOST':'3.215.46.92',
         'PORT':5432
 
     }
