@@ -1,13 +1,39 @@
 import { Injectable } from '@angular/core';
-
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators'
 @Injectable({
   providedIn: 'root'
 })
 export class StopService {
 
-  constructor() {
+  constructor(public http: HttpClient) {
     this.carousel = true
     this.is_home = true
+  }
+
+  get_all_products_service(): Observable<Product[]> {
+    return this.http.get<Product[]>("/api/products")
+      .pipe(
+        catchError((e) => this.errorHandler(e))
+      )
+  }
+  get_products_by_page_service(category: string, page_num:number): Observable<Product[]> {
+    return this.http.get<Product[]>("/api/products?category="+category+"&page="+page_num)
+      .pipe(
+        catchError((e) => this.errorHandler(e))
+      )
+  }
+  errorHandler(error: HttpErrorResponse) {
+    return throwError(error.message);
+  }
+
+  get_all_products() {
+    this.get_all_products_service().subscribe(data => {
+      console.log(data)
+      this.products = data
+      this.get_page(1)
+    })
   }
   category = ["leggings"]
   page_num = 1
@@ -22,13 +48,16 @@ export class StopService {
     'a-icon-star-small a-star-small-4',
     'a-icon-star-small a-star-small-5'
   ]
-  get_page(page_num: number) { 
-     window.scroll({'top':0})
+  get_page(page_num: number) {
+    window.scroll({ 'top': 0 })
 
     this.page_num = page_num
     if (this.category.length == 1) {
-      this.products_page = this.products.filter((value, index) => value.type == this.category[0])
-        .filter((value, index) => index >= 9 * (page_num - 1) && index < 9 * page_num)
+      this.get_products_by_page_service(this.category[0],this.page_num).subscribe(data=>{
+        this.products_page= data
+      })
+      // this.products_page = this.products.filter((value, index) => value.type == this.category[0])
+      //   .filter((value, index) => index >= 9 * (page_num - 1) && index < 9 * page_num)
 
     }
 
@@ -55,30 +84,30 @@ export class StopService {
   }
 
   cart: Product[] = []
-  total_cart:number = 0
-  add_to_cart(product:Product){
-    let n= product.price.length
-    this.total_cart += Number(product.price.slice(4,n))
+  total_cart: number = 0
+  add_to_cart(product: Product) {
+    let n = product.price.length
+    this.total_cart += Number(product.price.slice(4, n))
 
     this.cart.push(product)
-    this.products_page=this.products_page.map(el=>{
-      if(el.img_front == product.img_front){
-        el.added=true
+    this.products_page = this.products_page.map(el => {
+      if (el.img_front == product.img_front) {
+        el.added = true
       }
       return el
-    } )
+    })
 
     console.log(this.cart)
   }
-  remove_from_cart(product:Product){
-    let n= product.price.length
-    this.total_cart -= Number(product.price.slice(4,n))
+  remove_from_cart(product: Product) {
+    let n = product.price.length
+    this.total_cart -= Number(product.price.slice(4, n))
 
-    this.cart=this.cart.filter(el=> el.img_front != product.img_front)
-    
+    this.cart = this.cart.filter(el => el.img_front != product.img_front)
+
   }
 
-  products_page:Product[] = [{
+  products_page: Product[] = [{
     type: 'leggings',
     url: '',
     img_front: 'https://ae01.alicdn.com/kf/S82067cf13cc94d0a80f2c9f6fbb88e9ef/New-Women-Leggings-High-Waist-Fitness-Leggings-Female-Workout-Sports-Leggings-Fashion-Solid-Seamless-Leggins-Sexy.jpg_Q90.jpg_.webp',
@@ -105,11 +134,11 @@ export class StopService {
     star: 4,
     Reviews: 85,
     long_description: "----------------------------------------",
-    added:false,
+    added: false,
 
   }
-
-  products:Product[] = [
+  products: Product[] = []
+  _products: Product[] = [
     {
       type: 'leggings',
       url: '',
@@ -121,7 +150,7 @@ export class StopService {
       star: 5,
       Reviews: 54,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'leggings',
@@ -135,7 +164,7 @@ export class StopService {
       star: 4,
       Reviews: 66,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
 
     },
     {
@@ -149,7 +178,7 @@ export class StopService {
       star: 5,
       Reviews: 103,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'leggings',
@@ -162,7 +191,7 @@ export class StopService {
       star: 4,
       Reviews: 59,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'leggings',
@@ -175,7 +204,7 @@ export class StopService {
       star: 4,
       Reviews: 81,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
 
     },
     {
@@ -189,7 +218,7 @@ export class StopService {
       star: 5,
       Reviews: 103,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'leggings',
@@ -202,7 +231,7 @@ export class StopService {
       star: 5,
       Reviews: 57,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
 
     {
@@ -216,7 +245,7 @@ export class StopService {
       star: 5,
       Reviews: 52,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'leggings',
@@ -229,7 +258,7 @@ export class StopService {
       star: 5,
       Reviews: 82,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'leggings',
@@ -242,7 +271,7 @@ export class StopService {
       star: 5,
       Reviews: 85,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'leggings',
@@ -255,7 +284,7 @@ export class StopService {
       star: 4,
       Reviews: 55,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'leggings',
@@ -268,7 +297,7 @@ export class StopService {
       star: 5,
       Reviews: 72,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'leggings',
@@ -281,7 +310,7 @@ export class StopService {
       star: 5,
       Reviews: 101,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'leggings',
@@ -294,7 +323,7 @@ export class StopService {
       star: 5,
       Reviews: 71,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'leggings',
@@ -307,7 +336,7 @@ export class StopService {
       star: 5,
       Reviews: 110,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'leggings',
@@ -320,7 +349,7 @@ export class StopService {
       star: 4,
       Reviews: 51,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'leggings',
@@ -333,7 +362,7 @@ export class StopService {
       star: 5,
       Reviews: 54,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
 
 
@@ -348,7 +377,7 @@ export class StopService {
       star: 5,
       Reviews: 101,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
 
 
@@ -363,7 +392,7 @@ export class StopService {
       star: 5,
       Reviews: 46,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
 
     {
@@ -378,7 +407,7 @@ export class StopService {
       star: 4,
       Reviews: 45,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
 
     {
@@ -393,7 +422,7 @@ export class StopService {
       star: 4,
       Reviews: 59,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'leggings',
@@ -407,7 +436,7 @@ export class StopService {
       star: 5,
       Reviews: 47,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
 
 
 
@@ -423,7 +452,7 @@ export class StopService {
       star: 5,
       Reviews: 53,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'leggings',
@@ -436,7 +465,7 @@ export class StopService {
       star: 5,
       Reviews: 57,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'leggings',
@@ -449,7 +478,7 @@ export class StopService {
       star: 4,
       Reviews: 109,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
 
     {
@@ -464,7 +493,7 @@ export class StopService {
       star: 4,
       Reviews: 81,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
 
     {
@@ -478,7 +507,7 @@ export class StopService {
       star: 5,
       Reviews: 91,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     // {
     //   type:'sneakers',
@@ -535,7 +564,7 @@ export class StopService {
       star: 4,
       Reviews: 107,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'shorts',
@@ -548,7 +577,7 @@ export class StopService {
       star: 5,
       Reviews: 80,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'shorts',
@@ -561,7 +590,7 @@ export class StopService {
       star: 4,
       Reviews: 65,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'shorts',
@@ -574,7 +603,7 @@ export class StopService {
       star: 4,
       Reviews: 94,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'shorts',
@@ -587,7 +616,7 @@ export class StopService {
       star: 4,
       Reviews: 54,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'shorts',
@@ -600,7 +629,7 @@ export class StopService {
       star: 4,
       Reviews: 98,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'shorts',
@@ -613,7 +642,7 @@ export class StopService {
       star: 4,
       Reviews: 70,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
 
     {
@@ -627,7 +656,7 @@ export class StopService {
       star: 4,
       Reviews: 56,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'shorts',
@@ -640,7 +669,7 @@ export class StopService {
       star: 5,
       Reviews: 68,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'shorts',
@@ -653,7 +682,7 @@ export class StopService {
       star: 5,
       Reviews: 83,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'shorts',
@@ -666,7 +695,7 @@ export class StopService {
       star: 4,
       Reviews: 55,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'shorts',
@@ -679,7 +708,7 @@ export class StopService {
       star: 5,
       Reviews: 106,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'shorts',
@@ -692,7 +721,7 @@ export class StopService {
       star: 4,
       Reviews: 71,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'shorts',
@@ -705,7 +734,7 @@ export class StopService {
       star: 5,
       Reviews: 104,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'shorts',
@@ -718,7 +747,7 @@ export class StopService {
       star: 5,
       Reviews: 66,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'shorts',
@@ -731,7 +760,7 @@ export class StopService {
       star: 5,
       Reviews: 96,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
 
     {
@@ -745,7 +774,7 @@ export class StopService {
       star: 5,
       Reviews: 65,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
 
 
@@ -760,7 +789,7 @@ export class StopService {
       star: 4,
       Reviews: 105,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'shorts',
@@ -773,7 +802,7 @@ export class StopService {
       star: 5,
       Reviews: 57,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'shorts',
@@ -786,7 +815,7 @@ export class StopService {
       star: 5,
       Reviews: 100,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'shorts',
@@ -799,7 +828,7 @@ export class StopService {
       star: 4,
       Reviews: 73,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
 
     {
@@ -813,7 +842,7 @@ export class StopService {
       star: 5,
       Reviews: 98,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'shorts',
@@ -826,7 +855,7 @@ export class StopService {
       star: 4,
       Reviews: 45,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'shorts',
@@ -839,7 +868,7 @@ export class StopService {
       star: 4,
       Reviews: 61,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'shorts',
@@ -852,7 +881,7 @@ export class StopService {
       star: 5,
       Reviews: 104,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
 
     {
@@ -866,7 +895,7 @@ export class StopService {
       star: 5,
       Reviews: 89,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
 
 
@@ -882,7 +911,7 @@ export class StopService {
       star: 5,
       Reviews: 88,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     // ==================================  bras ====================================
     // ==================================  bras ====================================
@@ -900,7 +929,7 @@ export class StopService {
       star: 5,
       Reviews: 76,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'bras',
@@ -913,7 +942,7 @@ export class StopService {
       star: 4,
       Reviews: 69,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'bras',
@@ -926,7 +955,7 @@ export class StopService {
       star: 5,
       Reviews: 89,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'bras',
@@ -939,7 +968,7 @@ export class StopService {
       star: 4,
       Reviews: 59,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'bras',
@@ -952,7 +981,7 @@ export class StopService {
       star: 5,
       Reviews: 45,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'bras',
@@ -965,7 +994,7 @@ export class StopService {
       star: 4,
       Reviews: 58,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'bras',
@@ -978,7 +1007,7 @@ export class StopService {
       star: 5,
       Reviews: 92,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'bras',
@@ -991,7 +1020,7 @@ export class StopService {
       star: 5,
       Reviews: 51,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'bras',
@@ -1004,7 +1033,7 @@ export class StopService {
       star: 4,
       Reviews: 92,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'bras',
@@ -1017,7 +1046,7 @@ export class StopService {
       star: 4,
       Reviews: 76,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'bras',
@@ -1030,7 +1059,7 @@ export class StopService {
       star: 5,
       Reviews: 98,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'bras',
@@ -1043,7 +1072,7 @@ export class StopService {
       star: 4,
       Reviews: 84,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
 
     {
@@ -1057,7 +1086,7 @@ export class StopService {
       star: 4,
       Reviews: 45,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'bras',
@@ -1070,7 +1099,7 @@ export class StopService {
       star: 4,
       Reviews: 82,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'bras',
@@ -1083,7 +1112,7 @@ export class StopService {
       star: 5,
       Reviews: 55,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'bras',
@@ -1096,7 +1125,7 @@ export class StopService {
       star: 5,
       Reviews: 63,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'bras',
@@ -1109,7 +1138,7 @@ export class StopService {
       star: 5,
       Reviews: 89,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'bras',
@@ -1122,7 +1151,7 @@ export class StopService {
       star: 5,
       Reviews: 80,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
 
     {
@@ -1136,7 +1165,7 @@ export class StopService {
       star: 4,
       Reviews: 101,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'bras',
@@ -1149,7 +1178,7 @@ export class StopService {
       star: 5,
       Reviews: 58,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'bras',
@@ -1162,7 +1191,7 @@ export class StopService {
       star: 4,
       Reviews: 108,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'bras',
@@ -1175,7 +1204,7 @@ export class StopService {
       star: 5,
       Reviews: 79,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
 
     {
@@ -1189,7 +1218,7 @@ export class StopService {
       star: 5,
       Reviews: 76,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'bras',
@@ -1202,7 +1231,7 @@ export class StopService {
       star: 5,
       Reviews: 51,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'bras',
@@ -1215,7 +1244,7 @@ export class StopService {
       star: 5,
       Reviews: 99,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
 
     {
@@ -1229,7 +1258,7 @@ export class StopService {
       star: 5,
       Reviews: 108,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'bras',
@@ -1242,7 +1271,7 @@ export class StopService {
       star: 5,
       Reviews: 102,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'tank_tops',
@@ -1255,7 +1284,7 @@ export class StopService {
       star: 5,
       Reviews: 71,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'tank_tops',
@@ -1268,7 +1297,7 @@ export class StopService {
       star: 4,
       Reviews: 48,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'tank_tops',
@@ -1281,7 +1310,7 @@ export class StopService {
       star: 5,
       Reviews: 104,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'tank_tops',
@@ -1294,7 +1323,7 @@ export class StopService {
       star: 5,
       Reviews: 57,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'tank_tops',
@@ -1307,7 +1336,7 @@ export class StopService {
       star: 5,
       Reviews: 56,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
 
     {
@@ -1321,7 +1350,7 @@ export class StopService {
       star: 4,
       Reviews: 90,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'tank_tops',
@@ -1334,7 +1363,7 @@ export class StopService {
       star: 5,
       Reviews: 95,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
 
 
@@ -1350,7 +1379,7 @@ export class StopService {
       star: 5,
       Reviews: 109,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'tank_tops',
@@ -1363,7 +1392,7 @@ export class StopService {
       star: 4,
       Reviews: 52,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'tank_tops',
@@ -1376,7 +1405,7 @@ export class StopService {
       star: 4,
       Reviews: 74,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'tank_tops',
@@ -1389,7 +1418,7 @@ export class StopService {
       star: 4,
       Reviews: 68,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'tank_tops',
@@ -1402,7 +1431,7 @@ export class StopService {
       star: 5,
       Reviews: 67,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'tank_tops',
@@ -1415,7 +1444,7 @@ export class StopService {
       star: 5,
       Reviews: 91,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'tank_tops',
@@ -1428,7 +1457,7 @@ export class StopService {
       star: 5,
       Reviews: 107,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'tank_tops',
@@ -1441,7 +1470,7 @@ export class StopService {
       star: 5,
       Reviews: 105,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'tank_tops',
@@ -1454,7 +1483,7 @@ export class StopService {
       star: 4,
       Reviews: 60,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'tank_tops',
@@ -1467,7 +1496,7 @@ export class StopService {
       star: 4,
       Reviews: 92,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'tank_tops',
@@ -1480,7 +1509,7 @@ export class StopService {
       star: 5,
       Reviews: 103,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'tank_tops',
@@ -1493,7 +1522,7 @@ export class StopService {
       star: 4,
       Reviews: 74,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'tank_tops',
@@ -1506,7 +1535,7 @@ export class StopService {
       star: 5,
       Reviews: 66,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'tank_tops',
@@ -1519,7 +1548,7 @@ export class StopService {
       star: 5,
       Reviews: 68,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'tank_tops',
@@ -1532,7 +1561,7 @@ export class StopService {
       star: 4,
       Reviews: 76,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'tank_tops',
@@ -1545,7 +1574,7 @@ export class StopService {
       star: 5,
       Reviews: 77,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'tank_tops',
@@ -1558,7 +1587,7 @@ export class StopService {
       star: 5,
       Reviews: 83,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'tank_tops',
@@ -1571,7 +1600,7 @@ export class StopService {
       star: 5,
       Reviews: 95,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'tank_tops',
@@ -1584,7 +1613,7 @@ export class StopService {
       star: 4,
       Reviews: 92,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'tank_tops',
@@ -1597,7 +1626,7 @@ export class StopService {
       star: 5,
       Reviews: 66,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'sneakers',
@@ -1610,7 +1639,7 @@ export class StopService {
       star: 5,
       Reviews: 98,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'sneakers',
@@ -1623,7 +1652,7 @@ export class StopService {
       star: 5,
       Reviews: 85,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'sneakers',
@@ -1636,7 +1665,7 @@ export class StopService {
       star: 4,
       Reviews: 108,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'sneakers',
@@ -1649,7 +1678,7 @@ export class StopService {
       star: 4,
       Reviews: 86,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'sneakers',
@@ -1662,7 +1691,7 @@ export class StopService {
       star: 4,
       Reviews: 45,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'sneakers',
@@ -1675,7 +1704,7 @@ export class StopService {
       star: 4,
       Reviews: 63,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'sneakers',
@@ -1688,7 +1717,7 @@ export class StopService {
       star: 5,
       Reviews: 75,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
 
     {
@@ -1702,7 +1731,7 @@ export class StopService {
       star: 5,
       Reviews: 48,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'sneakers',
@@ -1715,7 +1744,7 @@ export class StopService {
       star: 5,
       Reviews: 102,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'sneakers',
@@ -1728,7 +1757,7 @@ export class StopService {
       star: 5,
       Reviews: 106,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
 
 
@@ -1743,7 +1772,7 @@ export class StopService {
       star: 5,
       Reviews: 81,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'sneakers',
@@ -1756,7 +1785,7 @@ export class StopService {
       star: 5,
       Reviews: 109,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'sneakers',
@@ -1769,7 +1798,7 @@ export class StopService {
       star: 4,
       Reviews: 84,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'sneakers',
@@ -1782,7 +1811,7 @@ export class StopService {
       star: 5,
       Reviews: 103,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'sneakers',
@@ -1795,7 +1824,7 @@ export class StopService {
       star: 5,
       Reviews: 69,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'sneakers',
@@ -1808,7 +1837,7 @@ export class StopService {
       star: 5,
       Reviews: 76,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'sneakers',
@@ -1821,7 +1850,7 @@ export class StopService {
       star: 5,
       Reviews: 66,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'sneakers',
@@ -1834,7 +1863,7 @@ export class StopService {
       star: 5,
       Reviews: 93,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'sneakers',
@@ -1847,7 +1876,7 @@ export class StopService {
       star: 5,
       Reviews: 66,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'sneakers',
@@ -1860,7 +1889,7 @@ export class StopService {
       star: 4,
       Reviews: 81,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'sneakers',
@@ -1873,7 +1902,7 @@ export class StopService {
       star: 5,
       Reviews: 45,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'sneakers',
@@ -1886,7 +1915,7 @@ export class StopService {
       star: 5,
       Reviews: 106,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'sneakers',
@@ -1899,7 +1928,7 @@ export class StopService {
       star: 5,
       Reviews: 102,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'sneakers',
@@ -1912,7 +1941,7 @@ export class StopService {
       star: 5,
       Reviews: 103,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'sneakers',
@@ -1925,7 +1954,7 @@ export class StopService {
       star: 5,
       Reviews: 55,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'sneakers',
@@ -1938,7 +1967,7 @@ export class StopService {
       star: 4,
       Reviews: 58,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'sneakers',
@@ -1951,7 +1980,7 @@ export class StopService {
       star: 5,
       Reviews: 100,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'accessories',
@@ -1964,7 +1993,7 @@ export class StopService {
       star: 5,
       Reviews: 82,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'accessories',
@@ -1977,7 +2006,7 @@ export class StopService {
       star: 5,
       Reviews: 65,
       long_description: "----------------------------------------",
-      added:false,
+      added: false,
     },
     {
       type: 'accessories',

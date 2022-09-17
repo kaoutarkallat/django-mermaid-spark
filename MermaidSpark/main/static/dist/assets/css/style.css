@@ -1009,14 +1009,14 @@ a.text-primary:hover {
   width: 100%;
   -webkit-transition: .4s all;
   transition: .4s all;
-  opacity: 0;
+  opacity: 1;
   display: -webkit-box;
   display: flex;
   -webkit-box-pack: center;
           justify-content: center;
 }
 
-.product-hover-overlay a {
+.product-hover-overlay div {
   background: #000;
   color: #fff;
   cursor: pointer;
@@ -1032,7 +1032,7 @@ a.text-primary:hover {
   margin: 0px 1px;
 }
 
-.product-hover-overlay a:hover {
+.product-hover-overlay div:hover {
   background: #fb5c42;
   color: #fff;
 }
@@ -1044,6 +1044,11 @@ a.text-primary:hover {
 
 .product-info {
   text-align: center;
+}
+
+.product-info a{
+  text-decoration:underline;
+  color: #00aced;
 }
 
 .product-info .price {
@@ -1998,6 +2003,10 @@ table.shop_table_responsive {
   line-height: 1.5;
 }
 
+.form-control{
+  font-size: 16px;
+  border-radius: 5px;
+}
 .login-form .form-control {
   background: transparent;
   height: 55px;

@@ -14,11 +14,13 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
+    
     <!-- menu -->
     <div class="collapse navbar-collapse " id="main-navbar"  *ngIf="open_menu">
+    <!-- <div class="collapse navbar-collapse " id="main-navbar"  > -->
       <ul class="navbar-nav mx-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home </a>
+          <a class="nav-link" routerLink="/home">Home </a>
         </li>
 
         
@@ -27,7 +29,7 @@
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Category
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown3">
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown3" (click)="open_menu = !open_menu">
             <li><a routerLink="leggings/1" (click)="stop.goTo(['leggings'])">Leggings</a></li>
             <li><a routerLink="shorts/1" (click)="stop.goTo(['shorts'])">Shorts</a></li>
             <li><a routerLink="bras/1" (click)="stop.goTo(['bras'])">Bras</a></li>
@@ -39,7 +41,7 @@
         </li><!-- / Blog -->
 
         <li class="nav-item dropdown dropdown-slide">
-          <a class="nav-link dropdown-toggle" routerLink="/home" fragment="myshop" id="navbarDropdown3" role="button" data-delay="350"
+          <a class="nav-link dropdown-toggle"  fragment="myshop" id="navbarDropdown3" role="button" data-delay="350"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Shop
           </a>
@@ -81,8 +83,7 @@
       </ul>
     </div>
     <!-- Navbar-collapse -->
-
-    <ul class="top-menu " id="top-menu">
+    <ul class="top-menu " id="top-menu" *ngIf="toggle">
       <li class="list-inline-item">
         <a href="#" class="search_toggle" id="search-icon"><i class="tf-ion-android-search"></i></a>
       </li>
@@ -124,5 +125,6 @@
       </li>
       <li class="list-inline-item"><a routerLink="/register"><i class="tf-ion-ios-person mr-3"></i></a></li>
     </ul>
+    
   </div>
 </nav>

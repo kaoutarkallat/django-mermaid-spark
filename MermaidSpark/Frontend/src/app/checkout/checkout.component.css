@@ -27,7 +27,9 @@ body, button, input, select, optgroup, textarea {
     -ms-flex: 0 1 auto;
     flex: 0 1 auto;
    
-    flex-direction: row;
+    flex-direction:row;
+    flex-flow: wrap;
+    justify-content: space-around;
     
 }
 .ht-col-xs-12 {
@@ -328,4 +330,25 @@ abbr{
 }
 abbr.required{
     color: #ff3535;
+}
+
+
+/* .billing-container{
+  display: flex;
+  flex-direction: column;
+} */
+
+/* .checkbox-form{
+  width: 200px;
+}
+.ht-col-xs-12{
+  width: 200px;
+
+} */
+.ht-col-md-7{
+max-width: 380px;
+
+}
+.ht-col-md-5{
+max-width: 380px;
 }

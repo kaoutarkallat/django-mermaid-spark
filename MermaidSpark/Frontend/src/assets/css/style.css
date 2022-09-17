@@ -1046,9 +1046,10 @@ a.text-primary:hover {
   text-align: center;
 }
 
-/* .product-info a{
-  text-decoration:overline;
-} */
+.product-info a{
+  text-decoration:underline;
+  color: #00aced;
+}
 
 .product-info .price {
   color: #000;
@@ -2002,6 +2003,10 @@ table.shop_table_responsive {
   line-height: 1.5;
 }
 
+.form-control{
+  font-size: 16px;
+  border-radius: 5px;
+}
 .login-form .form-control {
   background: transparent;
   height: 55px;
