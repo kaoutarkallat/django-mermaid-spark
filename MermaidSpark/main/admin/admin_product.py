@@ -54,6 +54,7 @@ class ProductAdmin(admin.ModelAdmin):
     search_fields = ["type","description","long_description","img_front","img_back"]
     ordering = ("-rank",)
     list_filter = ("type",)
+    list_per_page = 50
     list_display = (
         "id",
         # "rank",
@@ -84,9 +85,6 @@ class ProductAdmin(admin.ModelAdmin):
         "long_description",
     )
     actions = [switch, move_top]
-
-
-
 
 
 
