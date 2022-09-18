@@ -2,7 +2,7 @@
 <h3>{% blocktranslate with filter_title=title %} By {{ filter_title }} {% endblocktranslate %}</h3>
 <ul style="display:flex;flex-direction:row;flex-flow:wrap">
 {% for choice in choices %}
-    <li{% if choice.selected %} class="selected"{% endif %} style="margin-left:20px">
+    <li{% if choice.selected %} class="selected"{% endif %} style="margin: 10px; margin-left:20px; font-size: 16px;">
     <a href="{{ choice.query_string|iriencode }}" title="{{ choice.display }}">{{ choice.display }}</a></li>
 {% endfor %}
 </ul>
