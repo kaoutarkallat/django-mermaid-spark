@@ -24,6 +24,14 @@ export class StopService {
         catchError((e) => this.errorHandler(e))
       )
   }
+  get_more_products_service(category1: string, category2: string, page_num:number): Observable<Product[]> {
+    return this.http.get<Product[]>("/api/products?category1="+category1+"&category2="+category2+"&page="+page_num)
+      .pipe(
+        catchError((e) => this.errorHandler(e))
+      )
+  }
+
+
   errorHandler(error: HttpErrorResponse) {
     return throwError(error.message);
   }
@@ -62,19 +70,9 @@ export class StopService {
     }
 
     if (this.category.length > 1) {
-
-      var products_page1: any[] = this.products.filter((value, index) => value.type == this.category[0])
-      var products_page2 = this.products.filter((value, index) => value.type == this.category[1])
-      var products = []
-      for (var i = 0; i < products_page1.length; i++) {
-
-        products.push(products_page1[i])
-
-        products.push(products_page2[i])
-
-      }
-      this.products_page = products
-        .filter((value, index) => index >= 9 * (page_num - 1) && index < 9 * page_num)
+      this.get_more_products_service(this.category[0],this.category[1],this.page_num).subscribe(data=>{
+        this.products_page= data
+      })
     }
   }
   goTo(category: string[]) {

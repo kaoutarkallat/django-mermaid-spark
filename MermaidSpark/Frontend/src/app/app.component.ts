@@ -13,6 +13,6 @@ export class AppComponent implements OnInit{
 
   }
   ngOnInit() {
-    this.stop.get_all_products()
+    // this.stop.get_all_products()
   }
 }

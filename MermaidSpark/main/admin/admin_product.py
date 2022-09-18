@@ -19,10 +19,13 @@ class ProductAdmin(admin.ModelAdmin):
         return mark_safe(u'<img width="100" height="100" src="%s" />' % escape(obj.img_front))
     def back(self,obj):
         return mark_safe(u'<img width="100" height="100" src="%s" />' % escape(obj.img_back))
+    def aliexpress(self,obj):
+        return mark_safe(u'<a href="%s" />Aliexpress</a>' % escape(obj.url))
     search_fields = ["type","description","long_description","img_front","img_back"]
     list_filter = ("type",)
     list_display = (
         "id",
+        "aliexpress",
         "front",
         "back",
         "type",

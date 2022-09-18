@@ -1,1 +1,1 @@
-from .product import ProductAdmin
+from .admin_product import ProductAdmin
