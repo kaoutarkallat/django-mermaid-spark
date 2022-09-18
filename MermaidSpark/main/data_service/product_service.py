@@ -8,17 +8,17 @@ from ..serializers import ProductSerializer
 class ProductService:
 
     def get_all():
-        product = Product.objects.all().order_by('id')
+        product = Product.objects.all().order_by('-rank')
         serializer = ProductSerializer(product, many= True)
         return serializer.data
 
     def get_by_category_page(category, page_num):
-        product = Product.objects.filter(type = category).order_by('id')[(page_num-1)*9:page_num*9]
+        product = Product.objects.filter(type = category).order_by('-rank')[(page_num-1)*9:page_num*9]
         serializer = ProductSerializer(product, many= True)
         return serializer.data
 
     def get_by_two_category_page(category1,category2,page_num):
-        product = Product.objects.filter(type__in = (category1,category2)).order_by('id')
+        product = Product.objects.filter(type__in = (category1,category2)).order_by('-rank')
         serializer = ProductSerializer(product, many= True)
         return serializer.data
         

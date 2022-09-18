@@ -1,3 +1,4 @@
+from dataclasses import field
 from rest_framework import serializers
 
 from ..models import *
@@ -28,6 +29,8 @@ class ProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = ( 
             "id",
+            "created",
+            "rank",
             "type",
             "url",
             "img_front",
@@ -39,3 +42,8 @@ class ProductSerializer(serializers.ModelSerializer):
             "Reviews",
             "long_description"
         )
+
+class HistoryProductSerializer(ProductSerializer):
+    class Meta:
+        model = HistoryProduct
+        fields = ProductSerializer.Meta.fields +('deleted',)

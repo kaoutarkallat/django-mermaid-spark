@@ -11,6 +11,7 @@
 #     added:false,
 
 from django.db import models
+from django.utils import timezone
 
 class Product(models.Model):
     '''
@@ -27,17 +28,33 @@ class Product(models.Model):
     long_description: "----------------------------------------",
     added:false,
     '''
-    country = models.CharField(max_length=10000,null=True,blank=True, db_index=True)
-    type = models.CharField(max_length=10000,null=True,blank=True, db_index=True)
+    created = models.DateTimeField(null=True,blank=True, default=timezone.now)
+    rank = models.IntegerField(null=True,blank=True, db_index=True)
+    type = models.CharField(max_length=10000,null=True,blank=True, db_index=True, 
+        choices=[
+            ("accessories","accessories"),
+            ("bras","bras"),
+            ("leggings","leggings"),
+            ("shorts","shorts"),
+            ("sneakers","sneakers"),
+            ("tank_tops","tank_tops")
+        ])
     url = models.CharField(max_length=10000,null=True,blank=True, db_index=True)
     img_front = models.CharField(max_length=10000,null=True,blank=True, db_index=True)
     img_back = models.CharField(max_length=10000,null=True,blank=True, db_index=True)
     price = models.CharField(max_length=10000,null=True,blank=True)
     oldprice = models.CharField(max_length=10000,null=True,blank=True)
+    star = models.IntegerField(blank=True,null=True,default=5)
+    Reviews = models.IntegerField(null=True,blank=True, default=0)
     description = models.CharField(max_length=10000,null=True,blank=True, db_index=True)
-    star = models.IntegerField(blank=True)
-    Reviews = models.IntegerField(null=True,blank=True)
     long_description = models.CharField(max_length=10000,null=True,blank=True)
+
+    # def save(self, *args, **kwargs):
+    #     if not self.rank:
+    #         self.rank = Product.objects.latest('rank')
+    #     super(Product, self).save(*args, **kwargs)
 
     class Meta:
             db_table = "product"
+
+

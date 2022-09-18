@@ -29,7 +29,7 @@ class ProductView(APIView):
       
         if category and page_num:
             records = ProductService.get_by_category_page(category,int(page_num))
-        if category1 and category2 and page_num:
+        elif category1 and category2 and page_num:
             page_num = int(page_num)
             records = ProductService.get_by_two_category_page(category1,category2,page_num)
             product1 = [p for p in records if p['type']==category1]

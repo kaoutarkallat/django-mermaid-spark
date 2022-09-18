@@ -105,19 +105,21 @@ export class StopService {
 
   }
 
-  products_page: Product[] = [{
-    type: 'leggings',
-    url: '',
-    img_front: 'https://ae01.alicdn.com/kf/S82067cf13cc94d0a80f2c9f6fbb88e9ef/New-Women-Leggings-High-Waist-Fitness-Leggings-Female-Workout-Sports-Leggings-Fashion-Solid-Seamless-Leggins-Sexy.jpg_Q90.jpg_.webp',
-    img_back: 'https://ae01.alicdn.com/kf/S3b47de5500e243528cef6cef58ca9da3Q/Leggings-de-Fitness-taille-haute-pour-femmes-de-sport-d-entra-nement-de-mode-solide-sans.jpg_Q90.jpg_.webp',
-    price: 'MAD 170',
-    oldprice: 'MAD 250',
-    description: 'Workout Sports Leggings latest Fashion',
-    star: 5,
-    Reviews: 51,
-    long_description: "----------------------------------------",
-    added: false,
-  }]
+  products_page: Product[] = [
+  //   {
+  //   type: 'leggings',
+  //   url: '',
+  //   img_front: 'https://ae01.alicdn.com/kf/S82067cf13cc94d0a80f2c9f6fbb88e9ef/New-Women-Leggings-High-Waist-Fitness-Leggings-Female-Workout-Sports-Leggings-Fashion-Solid-Seamless-Leggins-Sexy.jpg_Q90.jpg_.webp',
+  //   img_back: 'https://ae01.alicdn.com/kf/S3b47de5500e243528cef6cef58ca9da3Q/Leggings-de-Fitness-taille-haute-pour-femmes-de-sport-d-entra-nement-de-mode-solide-sans.jpg_Q90.jpg_.webp',
+  //   price: 'MAD 170',
+  //   oldprice: 'MAD 250',
+  //   description: 'Workout Sports Leggings latest Fashion',
+  //   star: 5,
+  //   Reviews: 51,
+  //   long_description: "----------------------------------------",
+  //   added: false,
+  // }
+]
 
 
   product_detail: Product | any = {
