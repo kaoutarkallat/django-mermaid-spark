@@ -1,6 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.permissions import IsAuthenticated, IsAdminUser,AllowAny
 from django.db.utils import IntegrityError
 from ..data_service import UserService
 from pprint import pprint
@@ -42,13 +42,21 @@ class LastSignupAdminView(APIView):
         return Response(records)
 
 class UserView(APIView):
-    permission_classes = (IsAuthenticated,)
+    permission_classes = (AllowAny,)
+
     
     def get(self, request):
         records = UserService.get_page()
         return Response(records)
 
     def post(self, request):
-        output = UserService.post(request.data, return_object=True)
+        {'firstName': 'Hassane', 'lastName': 'Lakhloufi', 'email': 'hassanelakhloufi@live.fr', 'password': 'aaaa'}
+        print(request.data)
+        user={}
+        user["first_name"]=request.data.get("firstName", None)
+        user["last_name"]=request.data.get("lastName", None)
+        user["email"]=request.data.get("email", None)
+        user["password"]=request.data.get("password", None)
+        output = UserService.post(user, return_object=True)
         
         return Response(output)

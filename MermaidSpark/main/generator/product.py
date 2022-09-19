@@ -17,7 +17,7 @@ class ProductLoader():
 
 
     def upload_to_database(self):
-        ProductService.delete_all()
+        # ProductService.delete_all()
         # quit()
         counter = 0
         for product in self.products:

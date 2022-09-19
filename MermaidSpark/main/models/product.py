@@ -37,7 +37,8 @@ class Product(models.Model):
             ("leggings","leggings"),
             ("shorts","shorts"),
             ("sneakers","sneakers"),
-            ("tank_tops","tank_tops")
+            ("tank_tops","tank_tops"),
+            ("health_beauty","health_beauty"),
         ])
     url = models.CharField(max_length=10000,null=True,blank=True, db_index=True)
     img_front = models.CharField(max_length=10000,null=True,blank=True, db_index=True)

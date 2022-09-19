@@ -96,11 +96,14 @@ from django.dispatch import receiver
 @receiver(post_save, sender=Product)
 def update_rank(sender, instance, created, **kwargs):
     if created:
-        top_product = Product.objects.exclude(rank__isnull = True).latest('rank')
-        serializer = ProductSerializer(top_product)
-        top_rank = serializer.data['rank']
-
-        instance.rank = top_rank+1
+        try:
+            top_product = Product.objects.exclude(rank__isnull = True).latest('rank')
+            serializer = ProductSerializer(top_product)
+            top_rank = serializer.data['rank']
+            instance.rank = top_rank+1
+        except:
+            instance.rank = 1
+            
         instance.save()
 
 @receiver(pre_delete, sender=Product)
