@@ -1046,9 +1046,9 @@ a.text-primary:hover {
   text-align: center;
 }
 
-/* .product-info a{
+.product-info a{
   text-decoration:overline;
-} */
+}
 
 .product-info .price {
   color: #000;
