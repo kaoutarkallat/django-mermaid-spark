@@ -48,9 +48,9 @@ export class HomeComponent implements OnInit {
   //Slider settings
   slideConfig = { "slidesToShow": 1, "slidesToScroll": 1, autoplay: true };
   carousel = [
-    { img: 'background-image:url("assets/images/leg3.png") !important', shop_now:'/bras/1' },
-    { img: 'background-image:url("assets/images/leg2.png") !important', shop_now:'/shorts/1' },
-    { img: 'background-image:url("assets/images/leg1.png") !important', shop_now:'/leggings/1' }
+    { img: 'background-image:url("assets/images/leg3.png") !important', shop_now:'/leggings/1', type: 'leggings' },
+    { img: 'background-image:url("assets/images/leg2.png") !important', shop_now:'/shorts/1', type: 'shorts' },
+    { img: 'background-image:url("assets/images/leg1.png") !important', shop_now:'/bras/1', type: 'bras' }
   ]
 
 

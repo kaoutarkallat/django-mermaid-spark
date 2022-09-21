@@ -106,7 +106,7 @@
             <h1 class="mt-2 mb-5">
               <span class="text-color">10% off </span>YOUR FIRST ORDER
             </h1>
-            <a [routerLink]="product.shop_now" class="btn btn-main">Shop Now</a>
+            <a [routerLink]="product.shop_now" (click)="stop.product_detail=product.type;stop.go_top_detail()" class="btn btn-main">Shop Now</a>
           </div>
         </div>
       </div>
