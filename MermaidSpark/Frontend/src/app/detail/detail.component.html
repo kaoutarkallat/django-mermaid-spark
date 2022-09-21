@@ -101,21 +101,18 @@
                         </div>
                     </form>
                 </div>
-                <div class="d-flex align-items-center mb-4 pt-2">
-                    <div class="input-group quantity mr-3" style="width: 130px;">
-                        <div class="input-group-btn">
-                            <button class="btn btn-primary btn-minus" (click)="decrease_quantity()" >
-                            <i class="fa fa-minus"></i>
-                            </button>
-                        </div>
-                        <input type="text" class="form-control bg-secondary text-center" [value]="quantity">
-                        <div class="input-group-btn">
-                            <button class="btn btn-primary btn-plus" (click)="increase_quantity()" >
-                                <i class="fa fa-plus"></i>
-                            </button>
-                        </div>
+                <div class="" style="display: flex; justify-content:left">
+                    <div class="" style="display:flex ;flex-direction:row">
+                        
+                        <button class="btn btn-primary btn-minus" (click)="decrease_quantity()" >
+                        <i class="fa fa-minus"></i>
+                        </button>
+                        <input type="text" class="form-control" style="width: 40px; text-align:center" [value]="quantity">
+                        <button class="btn btn-primary btn-plus" (click)="increase_quantity()" >
+                            <i class="fa fa-plus"></i>
+                        </button>
+                        <button class="btn btn-primary" style="margin-left:10px ;"  (click)="stop.add_to_cart(stop.product_detail)" ><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
                     </div>
-                    <button class="btn btn-primary px-3"   (click)="stop.add_to_cart(stop.product_detail)" ><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
                 </div>
                 <div class="d-flex pt-2">
                     <p class="text-dark font-weight-medium mb-0 mr-2">Share on:</p>

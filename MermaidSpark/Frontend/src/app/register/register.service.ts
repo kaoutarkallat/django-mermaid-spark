@@ -14,7 +14,7 @@ export class RegisterService {
     const httpOptions={
       headers:new HttpHeaders({"content-type":"application/json"})
     }
-    return this.http.post<UserToRegister>('/user/register',user,httpOptions).pipe(
+    return this.http.post<UserToRegister>('/api/user/register',user,httpOptions).pipe(
       catchError((e)=>this.errorHandler(e)))
   }
 

@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('admin', admin.site.urls),
     path('', include('main.urls')),
 ]
 
@@ -28,11 +29,14 @@ urlpatterns += static(settings.MEDIA_URL,
 urlpatterns += static(settings.STATIC_URL,
                         document_root=settings.STATIC_ROOT)
 
-for i in urlpatterns:
-    print(i)
-print('media root ')
-print(settings.MEDIA_URL)
-print(settings.MEDIA_ROOT)
-print('static root ')
-print(settings.STATIC_URL)
-print(settings.STATIC_ROOT)
+# for i in urlpatterns:
+#     print(i)
+# print('media root ')
+# print(settings.MEDIA_URL)
+# print(settings.MEDIA_ROOT)
+# print('static root ')
+# print(settings.STATIC_URL)
+# print(settings.STATIC_ROOT)
+admin.site.site_header = "Mermaid Spark Administration"
+admin.site.site_title = "Mermaid Spark Administration"
+# admin.site.index_title = "Welcome to UMSRA Researcher Portal"

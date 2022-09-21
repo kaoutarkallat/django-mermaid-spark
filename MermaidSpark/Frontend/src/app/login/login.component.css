@@ -12,7 +12,14 @@ p.h4 {
     width: 100%;
     margin: 0px;
 }
+.btn{
+    border-radius: 10px;
+  }
 
+  .form-control{
+    font-size: 16px;
+    border-radius: 5px;
+  }
 .bottomNote {
     display: flex;
     justify-content: center;
@@ -22,7 +29,9 @@ p.h4 {
     background: linear-gradient(white, #bbb);
     border: solid 1px rgb(0, 162, 255);
     font-size: 130%;
-    width: 400px;
+    width: 360px;
+    margin-bottom: 40px;
+
 }
 
 .signup {
@@ -42,7 +51,7 @@ p.h4 {
     padding: 14px 20px;
     /* background-color: rgba(105, 105, 105, 0.425); */
     color: rgb(112, 212, 212);
-    width: 430px;
+    width: 400px;
 }
 
 .frameDesign {

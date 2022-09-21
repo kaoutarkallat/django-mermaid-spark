@@ -3,17 +3,22 @@ import { RegisterService, UserToRegister, SignupModel } from './register.service
 import { Validators, FormBuilder, AbstractControl } from '@angular/forms';
 
 import { Router } from '@angular/router';
+import { LoginService } from '../login/login.service';
+import { Animations } from '../tools/animations/hover';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
+  animations:[Animations.errorTrigger]
+
 })
 export class RegisterComponent implements OnInit {
 
   constructor(
     public formBuilder: FormBuilder,
     public signupService: RegisterService,
+    public loginService:LoginService,
     public router: Router
   ) { }
   ngOnInit() {
@@ -29,11 +34,15 @@ export class RegisterComponent implements OnInit {
     validator: PasswordValidation.MatchPassword
   })
 
+
+  alertOn:boolean=false;
+  alertMsg:string='';
   register(user: SignupModel) {
     var userToRegister = new UserToRegister(user.firstName, user.lastName, user.email, user.password)
     this.signupService.registerUser(userToRegister).subscribe(user => {
       console.log(user);
-      this.router.navigate(['/account/login']);
+      
+      this.router.navigate(['/login']);
     })
   }
 
@@ -100,7 +109,7 @@ export class RegisterComponent implements OnInit {
       }else return null
     }
     else if (name == "cPassword") {
-      var errors = this.signupForm.controls['cpassword'].errors
+      var errors = this.signupForm.controls['cPassword'].errors
       if (errors) {
 
         if (errors['required']) return "password is required"

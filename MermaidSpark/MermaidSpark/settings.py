@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken',
     'main'
 ]
 
@@ -55,7 +57,7 @@ ROOT_URLCONF = 'MermaidSpark.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'main/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -67,9 +69,38 @@ TEMPLATES = [
         },
     },
 ]
+print(TEMPLATES)
 
 WSGI_APPLICATION = 'MermaidSpark.wsgi.application'
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
+import datetime
+
+# for jwt tokens
+TOKEN_EXPIRED_AFTER_SECONDS = 60*60*24*365*1000
+JWT_EXPIRATION_DELTA = datetime.timedelta(days=365*1000)
+JWT_ALLOW_REFRESH: True
+JWT_REFRESH_EXPIRATION_DELTA: datetime.timedelta(days=365*1000)
+JWT_AUTH = {
+    # how long the original token is valid for
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=90),
+
+    # allow refreshing of tokens
+    'JWT_ALLOW_REFRESH': True,
+
+    # this is the maximum time AFTER the token was issued that
+    # it can be refreshed.  exprired tokens can't be refreshed.
+    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=365*1000),
+}
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
