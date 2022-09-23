@@ -24,11 +24,10 @@ export class LoginComponent implements OnInit {
   singupInfoOn:boolean=false;
   forgotPassworkOn:boolean=false
   ngOnInit() {
-    console.log('blabla')
-    this.title.setTitle('MetricGate: Login')
+    this.title.setTitle('MermaidSpark: Login')
     this.meta.updateTag({
       name:"description",
-      content:"Log in to your MetricGate account and start analysing your dataset."
+      content:"Log in to your MermaidSpark account."
     })
   }
   go2signup=() =>{

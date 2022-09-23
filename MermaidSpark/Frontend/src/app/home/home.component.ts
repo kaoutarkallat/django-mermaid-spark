@@ -193,6 +193,7 @@ export class HomeComponent implements OnInit {
     },
 
   ]
+
   products_footer_right = [
     {
       type: 'leggings',
@@ -247,6 +248,6 @@ export class HomeComponent implements OnInit {
       long_description: "----------------------------------------",
     },
   ]
- 
+  
 
 }

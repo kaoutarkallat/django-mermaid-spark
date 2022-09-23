@@ -31,6 +31,16 @@ export class StopService {
       )
   }
 
+  pay_service():Observable<any>{
+    const httpOptions={
+      headers:new HttpHeaders({"content-type":"application/json"})
+    }
+    return this.http.post<any>('/api/payment',{'mydata':'kkkll'},httpOptions).pipe(
+      catchError((e)=>this.errorHandler(e)))
+  }
+
+  
+
 
   errorHandler(error: HttpErrorResponse) {
     return throwError(error.message);

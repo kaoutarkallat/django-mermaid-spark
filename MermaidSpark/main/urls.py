@@ -1,5 +1,6 @@
 from django.urls import path, re_path
 from main.views import user_view
+from main.views.payment_view import PaymentView
 
 
 from .views import ProductView, UserView
@@ -7,6 +8,7 @@ from .views.frontend_view import  index
 
 urlpatterns=[
     path('', index,name ="index"),
+    re_path(r'^api/payment/?$', PaymentView.as_view(),name ="payment"),
     re_path(r'^api/products/?$', ProductView.as_view(),name ="product"),
     re_path(r'^/api/user/register/?$', UserView.as_view(),name ="user__"),
     re_path(r'^cart/?(?P<path>.*)$', index ,name ="index"),

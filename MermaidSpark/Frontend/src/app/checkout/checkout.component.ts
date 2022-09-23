@@ -8,9 +8,16 @@ import { StopService } from '../stop.service';
 })
 export class CheckoutComponent implements OnInit {
 
-  constructor(public stop:StopService) { }
+  constructor(public stop: StopService) { }
 
   ngOnInit(): void {
   }
 
+  pay(){
+    this.stop.pay_service().subscribe((data)=>{
+      console.log(data)
+      window.location.href = data.approval_url;
+
+    })
+  }
 }

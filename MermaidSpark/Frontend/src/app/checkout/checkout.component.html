@@ -93,7 +93,7 @@
                                     <div class="woocommerce-notices-wrapper"></div>
                                     <div class="checkout-area">
                                         <form name="checkout" method="post" class="checkout woocommerce-checkout"
-                                            action="https://demo.shrimpthemes.com/1/parlo/checkout/"
+                                            action="localhost:8000/hi"
                                             enctype="multipart/form-data" novalidate="novalidate"
                                             style="position: static; zoom: 1;">
                                             <!-- <div class="woocommerce-NoticeGroup woocommerce-NoticeGroup-checkout">
@@ -1201,7 +1201,9 @@
                                                                     <button type="submit" class="button alt"
                                                                         name="woocommerce_checkout_place_order"
                                                                         id="place_order" value="Place order"
-                                                                        data-value="Place order">Proceed to
+                                                                        data-value="Place order"
+                                                                        (click)="pay()"
+                                                                        >Proceed to
                                                                         PayPal</button>
 
                                                                     <input type="hidden"
