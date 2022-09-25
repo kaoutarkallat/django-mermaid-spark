@@ -8,7 +8,7 @@ from ..serializers import RequestSerializer
 class RequestService:
 
     def get_all():
-        request = Request.objects.all().order_by('-rank')
+        request = Request.objects.all()
         serializer = RequestSerializer(request, many= True)
         return serializer.data
 

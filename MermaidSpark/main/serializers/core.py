@@ -64,6 +64,16 @@ class RequestSerializer(serializers.ModelSerializer):
             'HTTP_USER_AGENT'
         )
 
+class MyActionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MyAction
+        fields = ( 
+            'created',
+            'username',
+            'action_type',
+            'text'
+        )
+
 class HistoryProductSerializer(ProductSerializer):
     class Meta:
         model = HistoryProduct

@@ -4,6 +4,7 @@ from django.utils.html import escape
 from django.utils.safestring import mark_safe
 
 from main.data_service.hist_product_service import HistoryProductService
+from main.data_service.myaction_service import MyActionService
 from ..models import *
 from django.db.models.query import QuerySet
 
@@ -21,6 +22,14 @@ def switch(modeladmin, request, queryset:QuerySet):
     last_product.rank = temp
     first_product.save()
     last_product.save()
+    try:
+        myaction_dict={'username':str(request.user)}
+        myaction_dict['action_type'] = 'switch'
+        myaction_dict['text'] = f'{first_product.type}({first_product.pk}),{last_product.type}({last_product.pk})'
+        MyActionService.post(myaction_dict=myaction_dict)
+    except Exception as e:
+        print(e)
+        pass
 
 @admin.action(description='Move to the Top')
 def move_top(modeladmin, request, queryset:QuerySet):
@@ -30,9 +39,20 @@ def move_top(modeladmin, request, queryset:QuerySet):
     top_rank = serializer.data['rank']
 
     selected:List[Product]= queryset.all()
+    text = ''
     for i,p in enumerate(selected):
         p.rank = top_rank + i + 1
         p.save()
+        text += f'{p.type}({p.pk}),'
+
+    try:
+        myaction_dict={'username':str(request.user)}
+        myaction_dict['action_type'] = 'move_top'
+        myaction_dict['text'] = text
+        MyActionService.post(myaction_dict=myaction_dict)
+    except Exception as e:
+        print(e)
+        pass
 
     
 @admin.register(Product)
