@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, IsAuthenticated, AllowAny
 from django.db.utils import IntegrityError
 
-from ..data_service import ProductService
+from ..data_service import ProductService, RequestService
 from pprint import pprint
 
 class ProductByIdView(APIView):
@@ -22,6 +22,10 @@ class ProductView(APIView):
     permission_classes = (AllowAny,)
     
     def get(self, request):
+        try:
+            RequestService.post(request_dict=request.META)
+        except:
+            pass
         category= request.query_params.get("category",None)
         category1= request.query_params.get("category1",None)
         category2= request.query_params.get("category2",None)

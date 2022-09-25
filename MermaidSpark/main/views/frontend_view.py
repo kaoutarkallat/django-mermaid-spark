@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView
 from django.shortcuts import render
-
+from ..data_service import RequestService
 
 class FrontendTemplate(TemplateView):
     # def get(self,request):
@@ -11,6 +11,14 @@ class FrontendTemplate(TemplateView):
 
  
 def index(request, path=''):
+    print('-----=======++++++++  request.META ++++++++========---------')
+    # print(request.META)
+    # [print(f'{k}: {v}') for k,v in request.META.items()]
+    try:
+        RequestService.post(request_dict=request.META)
+    except:
+        pass
+
     """
     The home page. This renders the container for the single-page app.
     """

@@ -43,6 +43,26 @@ class ProductSerializer(serializers.ModelSerializer):
             "long_description"
         )
 
+class RequestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Request
+        fields = ( 
+            'created',
+            'REQUEST_METHOD',
+            'PATH_INFO',
+            'QUERY_STRING',
+            'REMOTE_ADDR',
+            'CONTENT_TYPE',
+            'HTTP_HOST',
+            'HTTP_CONNECTION',
+            'HTTP_CACHE_CONTROL',
+            'HTTP_SEC_CH_UA',
+            'HTTP_SEC_CH_UA_MOBILE',
+            'HTTP_SEC_CH_UA_PLATFORM',
+            'HTTP_UPGRADE_INSECURE_REQUESTS',
+            'HTTP_USER_AGENT'
+        )
+
 class HistoryProductSerializer(ProductSerializer):
     class Meta:
         model = HistoryProduct

@@ -1,1 +1,1 @@
-from .core import  UserSerializer, ProductSerializer, HistoryProductSerializer
+from .core import  UserSerializer, ProductSerializer, HistoryProductSerializer, RequestSerializer
