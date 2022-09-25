@@ -23,7 +23,9 @@ class ProductView(APIView):
     
     def get(self, request):
         try:
-            RequestService.post(request_dict=request.META)
+            request_dict = request.META
+            request_dict['username'] = str(request.user)
+            RequestService.post(request_dict=request_dict)
         except:
             pass
         category= request.query_params.get("category",None)

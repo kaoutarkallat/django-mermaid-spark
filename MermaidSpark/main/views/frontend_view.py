@@ -13,9 +13,12 @@ class FrontendTemplate(TemplateView):
 def index(request, path=''):
     print('-----=======++++++++  request.META ++++++++========---------')
     # print(request.META)
+    print(request.user)
     # [print(f'{k}: {v}') for k,v in request.META.items()]
     try:
-        RequestService.post(request_dict=request.META)
+        request_dict = request.META
+        request_dict['username'] = str(request.user)
+        RequestService.post(request_dict=request_dict)
     except:
         pass
 

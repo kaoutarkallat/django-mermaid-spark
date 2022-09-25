@@ -19,6 +19,7 @@ class Request(models.Model):
         HTTP_USER_AGENT: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36
     '''
     created = models.DateTimeField(null=True,blank=True, default=timezone.now)    
+    username = models.CharField(max_length=10000,null=True,blank=True, db_index=True)
     REQUEST_METHOD = models.CharField(max_length=10000,null=True,blank=True, db_index=True)
     PATH_INFO = models.CharField(max_length=10000,null=True,blank=True, db_index=True)
     QUERY_STRING = models.CharField(max_length=10000,null=True,blank=True, db_index=True)

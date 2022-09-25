@@ -48,6 +48,7 @@ class RequestSerializer(serializers.ModelSerializer):
         model = Request
         fields = ( 
             'created',
+            'username',
             'REQUEST_METHOD',
             'PATH_INFO',
             'QUERY_STRING',
